@@ -1,0 +1,9 @@
+<bizctrl>
+    <IngoreMsgType>
+        <item name="证书" msgtype="922" msgcd="" type="应答" note="1" />
+        <item name="证书1" msgtype="923" msgcd="" type="应答" note="1" />
+        <item name="证书2" msgtype="924" msgcd="" type="应答" note="2" />
+        <item name="证书3" msgtype="925" msgcd="" type="应答" note="1" />
+        <item name="证书4" msgtype="926" msgcd="" type="应答" note="1" />
+    </IngoreMsgType>
+</bizctrl>

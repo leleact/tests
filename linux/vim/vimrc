@@ -1,0 +1,435 @@
+" Environment {
+if (has("win32") || has("win64"))
+    let g:iswindows = 1
+else
+    let g:islinux = 1
+endif
+
+source $VIMRUNTIME/vimrc_example.vim
+
+if has("mouse")
+    set mouse=a
+endif
+
+if has("gui_running")
+    syntax on
+    set hlsearch
+endif
+
+set noerrorbells	" not work
+set vb t_vb=		" work
+if has("win32") || has("win64")
+    set nocompatible
+    source $VIMRUNTIME/vimrc_example.vim
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+
+    set diffexpr=MyDiff()
+    function MyDiff()
+        let opt = '-a --binary '
+        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        let arg1 = v:fname_in
+        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        let arg2 = v:fname_new
+        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        let arg3 = v:fname_out
+        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        let eq = ''
+        if $VIMRUNTIME =~ ' '
+            if &sh =~ '\<cmd'
+                let cmd = '""' . $VIMRUNTIME . '\diff"'
+                let eq = '"'
+            else
+                let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+            endif
+        else
+            let cmd = $VIMRUNTIME . '\diff'
+        endif
+        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
+" }
+
+" Vundle {
+set nocompatible
+filetype off
+
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Main {
+Plugin 'gmarik/Vundle.vim'
+" }
+
+" Coding {
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Rip-Rip/clang_complete'
+Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+" }
+
+" Useful {
+Plugin 'majutsushi/tagbar'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+" <leader> cc comment
+" <leader> cu uncomment
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/a.vim'
+Plugin 'vim-scripts/vim-auto-save'
+" Plugin 'gustavo-hms/vim-cscope'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+" Plugin 'gabrielelana/vim-markdown'
+" }
+
+" UI {
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tomasr/molokai'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-jp/vim-cpp'
+" }
+
+call vundle#end()
+filetype plugin indent on
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" }
+
+" General {
+set nocompatible
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+set history=1000      " keep 50 lines of command line history
+set showcmd           " display incomplete commands
+set incsearch         " do incremental searching
+
+set number
+set ruler
+set ignorecase
+set hlsearch
+set backup
+set backupdir=~/.backupdir
+set undofile
+set undodir=~/.undodir
+
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+
+set cindent
+set smarttab
+
+if (has("win32") || has("win64"))
+    set encoding=gbk
+else
+    set encoding=utf-8
+endif
+set fileencodings=utf-8,gbk
+
+"set nowrapscan					" 查找到文件尾就停止
+set wrapscan					" 到文件尾会再次从文件头开始
+set expandtab					" 将制表符换成空格
+"set list
+set listchars=tab:>-,eol:$,trail:-,precedes:<
+"set endofline
+" }
+
+
+" Map {
+cmap Q q
+nmap <F3> :tabp<CR>
+nmap <F4> :tabn<CR>
+nmap <c-x> :tabclose<CR>
+" }
+
+" UI {
+set t_Co=256
+set laststatus=2
+
+syntax enable
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+let g:solarized_termcolors = 256
+"colorscheme solarized
+colorscheme default
+
+set cursorline
+"set cursorcolumn
+hi CursorLine cterm=NONE ctermbg=0 ctermfg=NONE guibg=NONE guifg=NONE " set cursor color help highlight
+
+if has("gui_running") && (has("win32") || has("win64"))
+    set guifont=YaHei\ \Consolas\ Hybrid:h12:cDEFAULT
+endif
+" }
+
+
+" Ctags {
+set tags=./tags,tags;
+" }
+
+
+" Cscope {
+if has("cscope")
+    function! LoadCscope()
+        let db = findfile("cscope.out", ".;")
+        if (!empty(db))
+            let path = strpart(db, 0, match(db, "/cscope.out$"))
+            set nocscopeverbose " suppress 'duplicate connection' error
+            exe "cs add " . db . " " . path
+            set cscopeverbose
+        endif
+    endfunction
+    au BufEnter /* call LoadCscope()
+endif
+" find . -name '*.cpp' -o -name '*.h' -o -name '*.c' -o -name '*.hpp' -o -name '*.cc' > cscope.files
+" cscope -R -b -q -k -i /foo/cscope.files
+
+" The following maps all invoke one of the following cscope search types:
+"
+"   's'   symbol: find all references to the token under cursor
+"   'g'   global: find global definition(s) of the token under cursor
+"   'c'   calls:  find all calls to the function name under cursor
+"   't'   text:   find all instances of the text under cursor
+"   'e'   egrep:  egrep search for the word under cursor
+"   'f'   file:   open the filename under cursor
+"   'i'   includes: find files that include the filename under cursor
+"   'd'   called: find functions that function under cursor calls
+"
+" Below are three sets of the maps: one set that just jumps to your
+" search result, one that splits the existing vim window horizontally and
+" diplays your search result in the new window, and one that does the same
+" thing, but does a vertical split instead (vim 6 only).
+"
+" I've used CTRL-\ and CTRL-@ as the starting keys for these maps, as it's
+" unlikely that you need their default mappings (CTRL-\'s default use is
+" as part of CTRL-\ CTRL-N typemap, which basically just does the same
+" thing as hitting 'escape': CTRL-@ doesn't seem to have any default use).
+" If you don't like using 'CTRL-@' or CTRL-\, , you can change some or all
+" of these maps to use other keys.  One likely candidate is 'CTRL-_'
+" (which also maps to CTRL-/, which is easier to type).  By default it is
+" used to switch between Hebrew and English keyboard mode.
+"
+" All of the maps involving the <cfile> macro use '^<cfile>$': this is so
+" that searches over '#include <time.h>" return only references to
+" 'time.h', and not 'sys/time.h', etc. (by default cscope will return all
+" files that contain 'time.h' as part of their name).
+
+
+" To do the first type of search, hit 'CTRL-\', followed by one of the
+" cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+" search will be displayed in the current window.  You can use CTRL-T to
+" go back to where you were before the search.
+"
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+" Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
+" makes the vim window split horizontally, with search result displayed in
+" the new window.
+"
+" (Note: earlier versions of vim may not have the :scs command, but it
+" can be simulated roughly via:
+"    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>
+
+nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+" Hitting CTRL-space *twice* before the search type does a vertical
+" split instead of a horizontal one (vim 6 and up only)
+"
+" (Note: you may wish to put a 'set splitright' in your .vimrc
+" if you prefer the new window on the right instead of the left
+
+nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+""""""""""""" key map timeouts
+"
+" By default Vim will only wait 1 second for each keystroke in a mapping.
+" You may find that too short with the above typemaps.  If so, you should
+" either turn off mapping timeouts via 'notimeout'.
+"
+"set notimeout
+"
+" Or, you can keep timeouts, by uncommenting the timeoutlen line below,
+" with your own personal favorite value (in milliseconds):
+"
+"set timeoutlen=4000
+"
+" Either way, since mapping timeout settings by default also set the
+" timeouts for multicharacter 'keys codes' (like <F1>), you should also
+" set ttimeout and ttimeoutlen: otherwise, you will experience strange
+" delays as vim waits for a keystroke after you hit ESC (it will be
+" waiting to see if the ESC is actually part of a key code like <F1>).
+"
+"set ttimeout
+"
+" personally, I find a tenth of a second to work well for key code
+" timeouts. If you experience problems and have a slow terminal or network
+" connection, set it higher.  If you don't set ttimeoutlen, the value for
+" timeoutlent (default: 1000 = 1 second, which is sluggish) is used.
+"
+"set ttimeoutlen=100
+" }
+
+" Plugin {
+" YoucompletMe {
+nnoremap <leader>gi :YcmCompleter GoToInclude<CR>			"Supported in filetypes: c, cpp, objc, objcpp
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>		"Supported in filetypes: c, cpp, objc, objcpp, python, cs
+nnoremap <leader>je :YcmCompleter GoToDeclaration<CR>		"Supported in filetypes: c, cpp, objc, objcpp, python, cs
+nnoremap <leader>ji :YcmCompleter GoToImplementation<CR>	"Supported in filetypes: cs
+nnoremap <leader>gt :YcmCompleter GetType<CR>				"Supported in filetypes: c, cpp, objc, objcpp
+nnoremap <leader>gp :YcmCompleter GetParent<CR>				"Supported in filetypes: c, cpp, objc, objcpp
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_cache_omnifunc = 0
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_echo_current_diagnostic = 1
+let g:ycm_key_invoke_completion = '<C-a>'
+"let g:ycm_disable_for_files_larger_than_kb = 0 " 关闭大文件打开提示
+
+" 自动补全后关闭Scratch
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" }
+
+
+
+" syntastic {
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+" }
+
+
+" UltiSnips {
+let g:UltiSnipsExpandTrigger='<C-J>'
+let g:UltiSnipsJumpForwardTrigger='<C-F>'
+let g:UltiSnipsJumpBackwardTrigger='<C-B>'
+" }
+
+
+" NerdTree {
+map <F1> :NERDTreeToggle<CR>
+map <C-F1> :NERDTreeFind<CR>
+let g:NERDTreeWinSize=30
+let NERDTreeChDirMode=2			"选中root即设置为当前目录
+let NERDTreeQuitOnOpen=0		"打开文件时关闭树
+let NERDTreeShowBookmarks=1		"显示书签
+let NERDTreeMinimalUI=1			"不显示帮助面板
+let NERDTreeDirArrows=0			"目录箭头 1 显示箭头  0传统+-|号
+" }
+
+" TagBar {
+"autocmd VimEnter * nested TagbarOpen 启动vim时自动打开tagbar
+let tagbar_left=0						" 设置 tagbar 1-子窗口的位置出现在主编辑区的左边, 0-右边[默认]
+nnoremap <F2> :TagbarToggle<CR>			" 设置显示／隐藏标签列表子窗口的快捷键。速记：tag list
+let tagbar_width = 30					" 设置标签子窗口的宽度
+let g:tagbar_compact = 1				" tagbar 子窗口中不显示冗余帮助信息
+" 设置 ctags 对哪些代码元素生成标签
+let g:tagbar_type_cpp = {
+            \ 'ctagstype' : 'c++',
+            \ 'kinds'     : [
+            \ 'd:macros:1:0',
+            \ 'p:prototypes:1:0',
+            \ 'g:enums',
+            \ 'e:enumerators:0:0',
+            \ 't:typedefs:0:0',
+            \ 'n:namespaces',
+            \ 'c:classes',
+            \ 's:structs',
+            \ 'u:unions',
+            \ 'f:functions',
+            \ 'm:members:0:0',
+            \ 'v:variables:0:0'
+            \ ],
+            \ 'sro'        : '::',
+            \ 'kind2scope' : {
+            \ 'g' : 'enum',
+            \ 'n' : 'namespace',
+            \ 'c' : 'class',
+            \ 's' : 'struct',
+            \ 'u' : 'union'
+            \ },
+            \ 'scope2kind' : {
+            \ 'enum'      : 'g',
+            \ 'namespace' : 'n',
+            \ 'class'     : 'c',
+            \ 'struct'    : 's',
+            \ 'union'     : 'u'
+            \ }
+            \ }
+" }
+
+" Airline {
+let g:airline_powerline_fonts = 1
+"let g:airline_symbols_ascii = 1
+"let g:airline#extensions#tabline#enabled = 1
+
+"if !exists('g:airline_sysbols')
+"    let g:airline_sysbols = { }
+"endif
+
+"let g:airline_theme='solarized'
+let g:airline_theme='xtermlight'
+
+" }
+
+" molokai {
+let g:molokai_original = 1
+let g:rehash256 = 1
+" }
+
+" auto save {
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+" }
+
+" }

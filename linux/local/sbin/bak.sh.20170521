@@ -1,0 +1,34 @@
+#!/bin/sh
+
+echo ""
+echo "================================================"
+echo $(date +%F_%H:%M:%S:%N) : 备份开始
+
+WORKPATH=/home/lele
+BACKPATH=$WORKPATH/.local/var/backup
+cd ~
+DATE=`date +%F_%H%M%S`
+tar -czvf ${BACKPATH}/lele_home_bak_${DATE}.tar.gz \
+    .ssh \
+    .bashrc \
+    .bash_profile \
+    .vimrc \
+    .gdbinit \
+    .ssh/ \
+    .local/sbin/ \
+    .local/usefull/ \
+    projects/test/ \
+    projects/ufp/ \
+    /etc/profile.d/ \
+    /etc/bashrc \
+    .ycm_extra_conf.py \
+    --exclude-tag VAR.TAG
+
+# delete date that exist 2 days at least
+cd ${BACKPATH}
+find . -name "*.tar.gz" -mtime +2 -exec rm -f {} \;
+
+echo "================================================"
+echo $(date +%F_%H:%M:%S:%N) : 备份结束
+echo ""
+echo ""
