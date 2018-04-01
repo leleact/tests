@@ -1,3 +1,0 @@
-/home/lele/projects/Test/cmake/CMakeFiles/rebuild_cache.dir
-/home/lele/projects/Test/cmake/CMakeFiles/Tutorial.dir
-/home/lele/projects/Test/cmake/CMakeFiles/edit_cache.dir
