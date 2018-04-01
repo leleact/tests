@@ -3,4 +3,4 @@
 ## Index
 - [CMake auto add subdirectory and add subdirectory][cmake-auto-add-subdirectory]
 
-[cmake-auto-add-subdirectory]:cmake/cmke_script/readme.md
+[cmake-auto-add-subdirectory]:cmake/cmake_script/readme.md
