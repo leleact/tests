@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 
 echo ""
 echo "================================================"
@@ -16,10 +16,7 @@ tar -czvf ${BACKPATH}/lele_home_bak_${DATE}.tar.gz \
     .bashrc \
     .bash_profile \
     .vimrc \
-    .ssh/ \
-    .local/sbin/ \
     .local/usefull/ \
-    projects/test/ \
     projects/ufp/ \
     ${GIT_REPO} \
     /etc/profile.d/ \
