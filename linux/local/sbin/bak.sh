@@ -17,7 +17,6 @@ tar -czvf ${BACKPATH}/lele_home_bak_${DATE}.tar.gz \
     .bash_profile \
     .vimrc \
     .local/usefull/ \
-    projects/ufp/ \
     ${GIT_REPO} \
     /etc/profile.d/ \
     /etc/bashrc \
