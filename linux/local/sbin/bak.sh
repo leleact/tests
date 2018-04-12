@@ -15,12 +15,10 @@ tar -czvf ${BACKPATH}/lele_home_bak_${DATE}.tar.gz \
     .ssh \
     .bashrc \
     .bash_profile \
-    .vimrc \
     .local/usefull/ \
     ${GIT_REPO} \
     /etc/profile.d/ \
     /etc/bashrc \
-    .ycm_extra_conf.py \
     --exclude-tag VAR.TAG
 
 rm -f ${GIT_REPO}
