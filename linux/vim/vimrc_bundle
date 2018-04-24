@@ -51,63 +51,62 @@ if has("win32") || has("win64")
 endif
 " }
 
-" neobundle {{{
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
+" Vundle {
+set nocompatible
+filetype off
 
-if &compatible
-    set nocompatible               " Be iMproved
-endif
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Required:
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Main {
+Plugin 'gmarik/Vundle.vim'
+" }
 
 " Coding {
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'jsfaint/gen_tags.vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Rip-Rip/clang_complete'
+Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 " }
 
 " Useful {
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
 " <leader> cc comment
 " <leader> cu uncomment
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'vim-scripts/a.vim'
-NeoBundle 'vim-scripts/vim-auto-save'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/a.vim'
+Plugin 'vim-scripts/vim-auto-save'
 " Plugin 'gustavo-hms/vim-cscope'
-NeoBundle 'vim-scripts/DoxygenToolkit.vim'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 " Plugin 'gabrielelana/vim-markdown'
 " }
 
 " UI {
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'vim-jp/vim-cpp'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tomasr/molokai'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-jp/vim-cpp'
 " }
-call neobundle#end()
 
-" Required:
+call vundle#end()
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-" }}}
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" }
 
 " General {
 set nocompatible
