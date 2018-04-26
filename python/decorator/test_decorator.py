@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:UTF-8 -*-
 
+"""
+calc 为装饰器, 接受一个函数作为参数, print 相当于拦截了函数, 可以在不改变
+原有的函数 Func逻辑的前提下, 对函数扩展
+"""
+
 def calc(func):
     def deco_in(*arg, **kw):
         print ('call %s():' % func.__name__)
