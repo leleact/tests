@@ -3,3 +3,5 @@
 `find_package` top `CMakeList.txt` 可以获取到 `Findxxx.cmake`中的变量
 
 `add_subdirectory` 上层的`CMakeList.txt`不能获取到子目录中的变量
+
+`find_package_handle_standard_args` 会设置 `XXX_FOUNT`变量
