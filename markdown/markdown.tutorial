@@ -1,0 +1,30 @@
+_word_  #一个单词斜体
+_a b c_ #一句话斜体
+**word** #一个单词粗体
+**a b c** #一句话变粗体
+**_a b c_** #一句话既是斜体也是粗体
+
+#header one #一号标题字体大
+##header two #二号标题
+###header two #三号标题
+####header two #四号标题
+#####header two #五号标题
+######header two #六号标题字体小
+###aaaa_bbb_ #将aaabbb变成标题 bbb斜体
+
+#外部连接
+[Search for it.](www.google.com)  #给"Search for it."添加连接
+[You're **really, really** going to want to see this.](www.dailykitten.com) #粗体链接
+####The Latest News from [the BBC](www.bbc.com/news) #标题链接
+
+you want to [see something fun][a fun place]?
+Well, do I have [the website for you][another fun place]!
+[a fun place]: www.zombo.com
+[another fun place]: www.stumbleupon.com
+
+![A representation of Octdrey Catburn](http://octodex.github.com/images/octdrey-catburn.jpg) #图片
+
+![The first father][First Father]
+![The second first father][Second Father]
+[First Father]: http://octodex.github.com/images/founding-father.jpg
+[Second Father]:http://octodex.github.com/images/foundingfather_v2.png
