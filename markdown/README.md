@@ -19,3 +19,7 @@
   </summary>
   some content1
 </details>
+
+## 点号开头的列表
+- 项目1
+- 项目2
