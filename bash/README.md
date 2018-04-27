@@ -1,3 +1,7 @@
+# Bash Tutorial
+
+## while
+``` bash
 #! /usr/bin/env bash
 retry_count=0
 while [ $retry_count -lt 3 ]
@@ -9,3 +13,4 @@ do
         echo $retry_count
     fi
 done
+```
