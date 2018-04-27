@@ -36,6 +36,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'jsfaint/gen_tags.vim'
+NeoBundle 'rhysd/vim-clang-format'
 " }
 
 " Useful {
@@ -261,6 +262,24 @@ let g:rehash256 = 1
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+" }
+
+" vim-clang-format {
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+" Auto-enabling auto-formatting uncomment below
+" autocmd FileType c ClangFormatAutoEnable
 " }
 
 " }
