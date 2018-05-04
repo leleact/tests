@@ -93,6 +93,8 @@ set shiftwidth=4
 set tabstop=4
 
 set cindent
+" vert help cinoptions-values
+set cinoptions=g0,N-s
 set smarttab
 
 if (has("win32") || has("win64"))
