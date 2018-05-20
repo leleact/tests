@@ -37,6 +37,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'jsfaint/gen_tags.vim'
 NeoBundle 'rhysd/vim-clang-format'
+NeoBundle 'vim-scripts/Conque-GDB'
 " }
 
 " Useful {
@@ -118,6 +119,7 @@ cmap Q q
 nmap <F3> :tabp<CR>
 nmap <F4> :tabn<CR>
 nmap <c-x> :tabclose<CR>
+map <F5> :! clang++ -g % && ./a.out<CR>
 " }
 
 " UI {
