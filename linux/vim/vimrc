@@ -49,9 +49,10 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/a.vim'
 NeoBundle 'vim-scripts/vim-auto-save'
-" Plugin 'gustavo-hms/vim-cscope'
+" NeoBundle 'gustavo-hms/vim-cscope'
 NeoBundle 'vim-scripts/DoxygenToolkit.vim'
-" Plugin 'gabrielelana/vim-markdown'
+" NeoBundle 'gabrielelana/vim-markdown'
+NeoBundle 'skywind3000/asyncrun.vim'
 " }
 
 " UI {
