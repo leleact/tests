@@ -2,7 +2,7 @@
 source $VIMRUNTIME/vimrc_example.vim
 
 if has("mouse")
-    set mouse=a
+    set mouse=
 endif
 
 if has("gui_running")
