@@ -152,6 +152,7 @@ endif
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>			"Supported in filetypes: c, cpp, objc, objcpp
 nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>		"Supported in filetypes: c, cpp, objc, objcpp, python, cs
 nnoremap <leader>je :YcmCompleter GoToDeclaration<CR>		"Supported in filetypes: c, cpp, objc, objcpp, python, cs
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>		"Supported in filetypes: c, cpp, objc, objcpp, python, cs
 nnoremap <leader>ji :YcmCompleter GoToImplementation<CR>	"Supported in filetypes: cs
 nnoremap <leader>gt :YcmCompleter GetType<CR>				"Supported in filetypes: c, cpp, objc, objcpp
 nnoremap <leader>gp :YcmCompleter GetParent<CR>				"Supported in filetypes: c, cpp, objc, objcpp
