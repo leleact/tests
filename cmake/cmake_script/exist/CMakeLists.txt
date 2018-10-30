@@ -1,0 +1,5 @@
+if (EXISTS "../README.md" )
+    message(STATUS "README.md EXISTS")
+else()
+    message(STATUS "README.md NOT EXISTS")
+endif()
