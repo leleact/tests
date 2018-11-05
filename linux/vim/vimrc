@@ -48,7 +48,7 @@ NeoBundle 'scrooloose/nerdtree'
 " <leader> cu uncomment
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/a.vim'
-NeoBundle 'vim-scripts/vim-auto-save'
+" NeoBundle 'vim-scripts/vim-auto-save'
 " NeoBundle 'gustavo-hms/vim-cscope'
 NeoBundle 'vim-scripts/DoxygenToolkit.vim'
 " NeoBundle 'gabrielelana/vim-markdown'
