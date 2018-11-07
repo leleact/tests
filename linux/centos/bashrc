@@ -13,5 +13,3 @@ fi
 #alias g++='g++ -std=c++14 -g -O0'
 #alias l='ls -lhF'
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
