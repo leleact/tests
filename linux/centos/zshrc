@@ -102,6 +102,4 @@ export GRADLE_HOME=$HOME/.local/gradle/gradle-3.5
 export PATH=$PATH:$GRADLE_HOME/bin
 export TMOUT=1800
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=$PATH:$HOME/.local/node/node-v8.11.4-linux-x64/bin
