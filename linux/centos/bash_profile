@@ -14,13 +14,9 @@ fi
 #export PS1="[\u@\h \w]\$ "
 ulimit -c unlimited
 
-export PATH=.:$HOME/.local/sbin/:$HOME/.local/bin:$PATH
+export PATH=.:$HOME/.local/sbin/:$HOME/.local/bin:$HOME/.local/node/node-v10.13.0-linux-x64/bin:$PATH
 export MANPATH=$HOME/.local/share/man:$MANPATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.local/lib64:$HOME/.local/lib/
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/.local/include/:$HOME/.local/include/libxml2/
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:$HOME/.local/include/:$HOME/.local/include/libxml2
 export TMOUT=1800
-export MAVEN_HOME=$HOME/.local/apache/maven/apache-maven-3.5.0
-export PATH=$PATH:$MAVEN_HOME/bin
-export GRADLE_HOME=$HOME/.local/gradle/gradle-3.5
-export PATH=$PATH:$GRADLE_HOME/bin
