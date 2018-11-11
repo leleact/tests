@@ -20,3 +20,5 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.local/lib64:$HOME/.local/lib/
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/.local/include/:$HOME/.local/include/libxml2/
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:$HOME/.local/include/:$HOME/.local/include/libxml2
 export TMOUT=1800
+
+export PATH="$HOME/.cargo/bin:$PATH"
