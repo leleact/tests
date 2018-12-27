@@ -139,7 +139,7 @@ colorscheme default
 
 set cursorline
 "set cursorcolumn
-hi CursorLine cterm=NONE ctermbg=0 ctermfg=NONE guibg=NONE guifg=NONE " set cursor color help highlight
+hi CursorLine cterm=NONE ctermbg=7 ctermfg=NONE guibg=NONE guifg=NONE " set cursor color help highlight
 
 if has("gui_running") && (has("win32") || has("win64"))
     set guifont=YaHei\ \Consolas\ Hybrid:h12:cDEFAULT
