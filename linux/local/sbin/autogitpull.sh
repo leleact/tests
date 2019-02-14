@@ -16,8 +16,7 @@ do
         echo `pwd`
         if [ -d .git ]
         then
-            git fetch origin && git submodule update --init --recursive
-            git pull
+            git pull --ff --ff-only && git submodule update --init --recursive
         fi
         cd ..
     fi
