@@ -12,65 +12,51 @@ endif
 
 " }}}
 
-" neobundle {{{
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
-
-if &compatible
-    set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+" vim-plug {{{
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+"
+" Make sure you use single quotes
 
 " Coding {
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'jsfaint/gen_tags.vim'
-NeoBundle 'rhysd/vim-clang-format'
-NeoBundle 'vim-scripts/Conque-GDB'
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'jsfaint/gen_tags.vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'vim-scripts/Conque-GDB'
+Plug 'davidhalter/jedi-vim'
 " }
 
 " Useful {
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
 " <leader> cc comment
 " <leader> cu uncomment
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'vim-scripts/a.vim'
-" NeoBundle 'vim-scripts/vim-auto-save'
-" NeoBundle 'gustavo-hms/vim-cscope'
-NeoBundle 'vim-scripts/DoxygenToolkit.vim'
-" NeoBundle 'gabrielelana/vim-markdown'
-NeoBundle 'skywind3000/asyncrun.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/a.vim'
+" Plug 'vim-scripts/vim-auto-save'
+" Plug 'gustavo-hms/vim-cscope'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+" Plug 'gabrielelana/vim-markdown'
+Plug 'skywind3000/asyncrun.vim'
 " }
 
 " UI {
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'vim-jp/vim-cpp'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tomasr/molokai'
+Plug 'flazz/vim-colorschemes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-jp/vim-cpp'
 " }
-call neobundle#end()
+" Initialize plugin system
+call plug#end()
 
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 " }}}
 
 " General {
