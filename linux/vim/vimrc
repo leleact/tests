@@ -30,6 +30,9 @@ Plug 'rhysd/vim-clang-format'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Shougo/deoplete.nvim'
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 " }
 
 " Useful {
