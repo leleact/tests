@@ -31,8 +31,6 @@ Plug 'vim-scripts/Conque-GDB'
 Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Shougo/deoplete.nvim'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 " }
 
 " Useful {
@@ -158,10 +156,8 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_echo_current_diagnostic = 1
 let g:ycm_key_invoke_completion = '<C-a>'
 "let g:ycm_disable_for_files_larger_than_kb = 0 " 关闭大文件打开提示
-
-" 自动补全后关闭Scratch
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 " }
 
 
@@ -270,7 +266,7 @@ let g:clang_format#detect_style_file = 1
             "\ "AllowShortIfStatementsOnASingleLine" : "true",
             "\ "AlwaysBreakTemplateDeclarations" : "true",
             "\ "Standard" : "C++11"}
-let g:clang_format#auto_format_on_insert_leave = 1
+"let g:clang_format#auto_format_on_insert_leave = 1
 let g:clang_format#code_style = "llvm"
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
