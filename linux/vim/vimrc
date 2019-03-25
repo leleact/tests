@@ -25,7 +25,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'jsfaint/gen_tags.vim'
+"Plug 'jsfaint/gen_tags.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'davidhalter/jedi-vim'
@@ -74,9 +74,9 @@ set ruler
 set ignorecase
 set hlsearch
 set backup
-set backupdir=~/.backupdir
+set backupdir=~/.backup
 set undofile
-set undodir=~/.undodir
+set undodir=~/.undo
 
 set softtabstop=4
 set shiftwidth=4
